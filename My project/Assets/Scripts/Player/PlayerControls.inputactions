@@ -34,7 +34,7 @@
                 },
                 {
                     "name": "Rotation",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "863ac993-43d4-4cd4-866e-de2593e978f7",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -150,17 +150,6 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Sprint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e5ea72ed-c424-4a08-9c54-d34499d90e82",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

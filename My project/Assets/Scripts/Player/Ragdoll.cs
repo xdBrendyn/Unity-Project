@@ -18,7 +18,7 @@ public class Ragdoll : MonoBehaviour {
         // Check if the current transform has a Rigidbody component
         Rigidbody rigidbody = currentTransform.GetComponent<Rigidbody>();
 
-        if (rigidbody != null) {
+        if (rigidbody != null && rigidbody.transform != this.transform) {
             Rigidbodies.Add(rigidbody);
         }
 
@@ -35,4 +35,5 @@ public class Ragdoll : MonoBehaviour {
         }
     }
 }
+
 

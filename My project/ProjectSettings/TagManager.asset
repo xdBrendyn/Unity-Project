@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player2Cam
-  - Player2
+  - PlayerCam
   layers:
   - Default
   - TransparentFX
@@ -14,9 +13,9 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
-  - 
+  - Head
+  - Body
+  - Legs
   - 
   - 
   - 

@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
         PlayerCamera = GetComponentInChildren<Camera>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Move(); 
     }
