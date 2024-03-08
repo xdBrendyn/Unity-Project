@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Moves whatever gameObject it is attached to
@@ -23,21 +24,44 @@ public class Movement : MonoBehaviour
 
     Camera PlayerCamera;
     bool Grounded;
+    bool Jumped;
+    bool Sprinting;
+    Vector2 MovementInput = Vector2.zero;
 
     void Awake()
     {
-        PlayerCamera = Camera.main;
+        PlayerCamera = GetComponentInChildren<Camera>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move(); 
     }
 
+    // Switched to the new input system to set up local multiplayer
+    #region InputReading
+
+    public void OnMove(InputAction.CallbackContext context) 
+    {
+        MovementInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        Jumped = context.action.triggered;
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        Sprinting = context.action.triggered;
+    }
+
+    #endregion
+
     void Move()
     {
-        float x = Input.GetAxis("Horizontal") * MovementSpeed;
-        float z = Input.GetAxis("Vertical") * MovementSpeed;
+        float x = MovementInput.x * MovementSpeed;
+        float z = MovementInput.y * MovementSpeed;
         Vector3 cameraForward;
         Vector3 cameraRight;
         Vector3 movement;
@@ -51,14 +75,14 @@ public class Movement : MonoBehaviour
 
         movement = (cameraForward * z + cameraRight * x);
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (Sprinting && Grounded)
         {
             movement *= SprintSpeed;
         }
 
         RB.velocity = new(movement.x, RB.velocity.y, movement.z);
 
-        if (Input.GetKey(KeyCode.Space) && Grounded)
+        if (Jumped && Grounded)
         {   
             RB.AddForce(Vector3.up * JumpStrength, ForceMode.Impulse);
             Grounded = false;
