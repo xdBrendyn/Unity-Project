@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerCam
+  - Player1
+  - Player2
+  - Player3
+  - Player4
   layers:
   - Default
   - TransparentFX
@@ -12,13 +16,13 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Player
+  - Player1
   - Head
   - Body
   - Legs
-  - 
-  - 
-  - 
+  - Player2
+  - Player3
+  - Player4
   - 
   - 
   - 

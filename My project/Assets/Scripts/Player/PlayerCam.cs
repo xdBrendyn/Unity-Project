@@ -26,6 +26,21 @@ public class PlayerCam : MonoBehaviour {
         InputUser.onChange += OnInputUserChange;
     }
 
+    void Start() {
+        SetCameraCullingMask();
+    }
+
+    void SetCameraCullingMask() {
+        int playerLayer = LayerMask.NameToLayer(Orientation.parent.tag);
+        if (playerLayer == -1) {
+            Debug.LogError("Layer not found: " + Orientation.parent.tag);
+            return;
+        }
+
+        // Set the culling mask to include every layer except the player's layer
+        GetComponent<Camera>().cullingMask = ~(1 << playerLayer);
+    }
+
     #region InputReading
 
     public void OnLook(InputAction.CallbackContext context) {
